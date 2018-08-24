@@ -2,7 +2,7 @@ import random
 import asyncio
 from discord.ext.commands import Bot
 import discord
-
+#THis is a command
 BOT_PREFIX = ( "!")
 TOKEN = "NDU0OTgzNzUxMjY5ODc1NzI1.Df1Y4g.83TyQMZFb-4rirJFIGlCIkJZy1A"  # Get at discordapp.com/developers/applications/me
 
