@@ -95,11 +95,15 @@ async def english():
 	await client.say("https://www.youtube.com/watch?v=a0x6vIAtFcI&feature=youtu.be&t=12s")
 
 @client.command(pass_context = True)	
-async def repeat(ctx,msg : discord.message =  None):
-	if msg == None:
+async def repeat(ctx):#, msg : discord.message =  None):
+	print(ctx.message.content)
+	msg = str(ctx.message.content).split(" ", 1)
+	#print(msg[1])
+	if len(msg) == 1:
 		await client.say ("No message to repeat")
 	else :
-		await client.say(ctx.message)
+		pass
+		await client.send_message(ctx.message.channel, msg[1])
 	
 	
 	
