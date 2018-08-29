@@ -2,6 +2,7 @@ import random
 import asyncio
 from discord.ext.commands import Bot
 import discord
+import numpy as np
 #THis is a command
 BOT_PREFIX = ( "!")
 TOKEN = "NDU0OTgzNzUxMjY5ODc1NzI1.Df1Y4g.83TyQMZFb-4rirJFIGlCIkJZy1A"  # Get at discordapp.com/developers/applications/me
@@ -96,7 +97,7 @@ async def english():
 
 @client.command(pass_context = True)	
 async def repeat(ctx):#, msg : discord.message =  None):
-	print(ctx.message.content)
+	#print(ctx.message.content)
 	msg = str(ctx.message.content).split(" ", 1)
 	#print(msg[1])
 	if len(msg) == 1:
@@ -104,6 +105,26 @@ async def repeat(ctx):#, msg : discord.message =  None):
 	else :
 		pass
 		await client.send_message(ctx.message.channel, msg[1])
+@client.command(pass_context = True)	
+async def love(ctx, user: discord.Member = None):
+	special = ["107043526050619392","454983751269875725"] #mien and bot's id
+	msg = [ "Runs away from {}"
+			"*Hides from {}",
+			"*Stabs {} and runs*",
+			"*Grabs {} * DON'T LET GO",
+			"WHERE'S MY SMOKE BOMB?!?!?",
+			"Oh?!... H-Hi {}",
+			"hehe.... *kisses {}*"
+	]
+	prob = [ 0.4,0.3,0.2,0.093,0.002,0.001]
+	if user == None:
+		user = ctx.message.author
+	if user.id in special:
+		await client.say(":hearts: {} :hearts:".format(user.mention))
+	else:
+		love_msg = np.random.choice(msg,p = prob)
+		await client.say(love_msg.format(user.mention))
+		
 	
 	
 	
