@@ -4,7 +4,7 @@ from discord.ext.commands import Bot
 import discord
 import numpy as np
 #THis is a command
-BOT_PREFIX = ( "!")
+BOT_PREFIX = ("%")
 TOKEN = "NDU0OTgzNzUxMjY5ODc1NzI1.Df1Y4g.83TyQMZFb-4rirJFIGlCIkJZy1A"  # Get at discordapp.com/developers/applications/me
 
 client = Bot(command_prefix=BOT_PREFIX)
@@ -128,18 +128,18 @@ async def love(ctx, user: discord.Member = None):
 @client.command(pass_context = True)	
 async def help(ctx):
 	commands={}
-	commands['!eight_ball']='A command that may or may not be from the internet.'
-	commands['!tak']='Want to answer something ambigoiusly? Tak!'
-	commands['!gdg']='Ever wonderd what GDG would say in this situation? DISCLAIMER: he would probably not say what the bot gives you'
-	commands['!exterminatus']="Server's getting to rowdy? Purge the heretics!"
-	commands['!blam']="Executions will continue until morale improves."
-	commands['!fire']='PEWPEWPEWPEWPEW'
-	commands['!americans']='Ever wanted to sigh at the antics of Americans? ...No?'
-	commands['!english']="Courtesy of Samuel.L.Jackson"
-	commands['!repeat'] = "Literally repeats what you say"
-	commands['!love'] = "Does GDG love you? WARNING: GDG and Co do not take any responsibilty for any consequences if asking the bot. If Symptoms persist, consult Andrew Taylor"
-	commands['!stop'] = "Please don't run this."
-	commands['!help'] = "You're here."
+	commands['%eight_ball']='A command that may or may not be from the internet.'
+	commands['%tak']='Want to answer something ambigoiusly? Tak!'
+	commands['%gdg']='Ever wonderd what GDG would say in this situation? DISCLAIMER: he would probably not say what the bot gives you'
+	commands['%exterminatus']="Server's getting to rowdy? Purge the heretics!"
+	commands['%blam']="Executions will continue until morale improves."
+	commands['%fire']='PEWPEWPEWPEWPEW'
+	commands['%americans']='Ever wanted to sigh at the antics of Americans? ...No?'
+	commands['%english']="Courtesy of Samuel.L.Jackson"
+	commands['%repeat'] = "Literally repeats what you say"
+	commands['%love'] = "Does GDG love you? WARNING: GDG and Co do not take any responsibilty for any consequences if asking the bot. If Symptoms persist, consult Andrew Taylor"
+	commands['%stop'] = "Please don't run this."
+	commands['%help'] = "You're here."
 
 	msg=discord.Embed(title='GDGBOT', description="Written by GDG",color=0x3EA2DD)
 	for command,description in commands.items():
