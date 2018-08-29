@@ -108,21 +108,23 @@ async def repeat(ctx):#, msg : discord.message =  None):
 @client.command(pass_context = True)	
 async def love(ctx, user: discord.Member = None):
 	special = ["107043526050619392","454983751269875725"] #mien and bot's id
-	msg = [ "Runs away from {}"
-			"*Hides from {}",
+	msg = [ "Runs away from {}",
+			"*Hides from {}*",
 			"*Stabs {} and runs*",
 			"*Grabs {} * DON'T LET GO",
 			"WHERE'S MY SMOKE BOMB?!?!?",
 			"Oh?!... H-Hi {}",
 			"hehe.... *kisses {}*"
 	]
-	prob = [ 0.4,0.3,0.2,0.093,0.002,0.001]
+	prob = [ 0.27,0.27,0.26,0.1,0.097,0.002,0.001]
 	if user == None:
 		user = ctx.message.author
 	if user.id in special:
 		await client.say(":hearts: {} :hearts:".format(user.mention))
 	else:
 		love_msg = np.random.choice(msg,p = prob)
+		print(love_msg)
+		print(love_msg.format('user'))
 		await client.say(love_msg.format(user.mention))
 		
 @client.command(pass_context = True)	
