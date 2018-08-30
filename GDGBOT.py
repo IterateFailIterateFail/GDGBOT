@@ -6,7 +6,7 @@ import numpy as np
 #THis is a command
 BOT_PREFIX = ("%")
 TOKEN = "NDU0OTgzNzUxMjY5ODc1NzI1.Df1Y4g.83TyQMZFb-4rirJFIGlCIkJZy1A"  # Get at discordapp.com/developers/applications/me
-
+special = ["107043526050619392","454983751269875725"] #mien and bot's id
 client = Bot(command_prefix=BOT_PREFIX)
 client.remove_command('help')
 @client.command(name='8ball',
@@ -71,7 +71,6 @@ async def exterminatus(ctx):
 
 @client.command(pass_context = True)	
 async def blam(ctx, user: discord.Member = None):
-	special = ["107043526050619392","454983751269875725"] #mien and bot's id
 	if user == None:
 		await client.say ("WHO DO I SHOOT?!?!?")
 	elif user.id in special:
@@ -84,9 +83,13 @@ async def fire():
 	await client.say("https://cdn.discordapp.com/attachments/403729769264447489/455014553261178884/2bx4hf.gif")
 
 
-@client.command()
-async def stop():
-	await client.logout()
+@client.command(pass_context = True)
+async def stop(ctx):
+	GDG = "107043526050619392"
+	if ctx.message.author.id == GDG:
+		await client.logout()
+	else:
+		await client.say("{0}! {1} is trying to shut me down!".format(client.get_user_info(GDG).mention,ctx.message.author.mention))
 
 @client.command()
 async def americans():
@@ -109,7 +112,7 @@ async def repeat(ctx):#, msg : discord.message =  None):
 
 @client.command(pass_context = True)	
 async def love(ctx, user: discord.Member = None):
-	special = ["107043526050619392","454983751269875725"] #mien and bot's id
+	
 	msg = [ "*Runs away from {}*",
 			"*Hides from {}*",
 			"*Stabs {} and runs*",
@@ -136,12 +139,12 @@ async def help(ctx):
 	commands['%tak']='Want to answer something ambigoiusly? Tak!'
 	commands['%gdg']='Ever wonderd what GDG would say in this situation? DISCLAIMER: he would probably not say what the bot gives you'
 	commands['%exterminatus']="Server's getting to rowdy? Purge the heretics!"
-	commands['%blam']="Executions will continue until morale improves."
+	commands["%blam [@user]"]="Executions will continue until morale improves."
 	commands['%fire']='PEWPEWPEWPEWPEW'
 	commands['%americans']='Ever wanted to sigh at the antics of Americans? ...No?'
 	commands['%english']="Courtesy of Samuel.L.Jackson"
-	commands['%repeat'] = "Literally repeats what you say"
-	commands['%love'] = "Does GDG love you? WARNING: GDG and Co do not take any responsibilty for any consequences if asking the bot. If Symptoms persist, consult Andrew Taylor"
+	commands['%repeat [message]'] = "Literally repeats what you say"
+	commands['%love OPTIONAL[@user]'] = "Does GDG love you? WARNING: GDG and Co do not take any responsibilty for any consequences if asking the bot. If Symptoms persist, consult Andrew Taylor"
 	commands['%stop'] = "Please don't run this."
 	commands['%help'] = "You're here."
 
