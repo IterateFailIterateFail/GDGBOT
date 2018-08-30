@@ -68,6 +68,7 @@ async def gdg():
 async def exterminatus(ctx):
 	await client.say("I have arrived, and it is now that I perform my charge. In fealty to the God-Emperor and by the grace of the Golden Throne, I declare Exterminatus upon the server of " + ctx.message.server.name +". I hereby sign the death warrant of an entire server and consign a million souls to oblivion. May Imperial Justice account in all balance. The Emperor Protects.")
 	await client.say ("https://cdn.discordapp.com/attachments/403729769264447489/455013422149533706/Exterminatus_of_Matar.gif")
+
 @client.command(pass_context = True)	
 async def blam(ctx, user: discord.Member = None):
 	special = ["107043526050619392","454983751269875725"] #mien and bot's id
@@ -105,13 +106,14 @@ async def repeat(ctx):#, msg : discord.message =  None):
 	else :
 		pass
 		await client.send_message(ctx.message.channel, msg[1])
+
 @client.command(pass_context = True)	
 async def love(ctx, user: discord.Member = None):
 	special = ["107043526050619392","454983751269875725"] #mien and bot's id
-	msg = [ "Runs away from {}",
+	msg = [ "*Runs away from {}*",
 			"*Hides from {}*",
 			"*Stabs {} and runs*",
-			"*Grabs {} * DON'T LET GO",
+			"*Grabs {}* DON'T LET GO",
 			"WHERE'S MY SMOKE BOMB?!?!?",
 			"Oh?!... H-Hi {}",
 			"hehe.... *kisses {}*"
