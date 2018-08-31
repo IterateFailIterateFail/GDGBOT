@@ -3,6 +3,7 @@ import asyncio
 from discord.ext.commands import Bot
 import discord
 import numpy as np
+import re
 #THis is a command
 BOT_PREFIX = ("%")
 TOKEN = "NDU0OTgzNzUxMjY5ODc1NzI1.Df1Y4g.83TyQMZFb-4rirJFIGlCIkJZy1A"  # Get at discordapp.com/developers/applications/me
@@ -70,13 +71,25 @@ async def exterminatus(ctx):
 	await client.say ("https://cdn.discordapp.com/attachments/403729769264447489/455013422149533706/Exterminatus_of_Matar.gif")
 
 @client.command(pass_context = True)	
-async def blam(ctx, user: discord.Member = None):
+async def blam(ctx):
+	target = str(ctx.message.content).split(" ", 1)
+	user = None
+	#print(target)
+	server = ctx.message.server
+	if (len(target) !=2 or not re.match('^<\S+>$',target[1])):
+		user = None
+	#	print("who did that")
+	else:
+		target[1] = re.sub('<|>|\@|\!', '', target[1])
+	#	print(target[1])
+		user = server.get_member(target[1])
+	#print(user)
 	if user == None:
 		await client.say ("WHO DO I SHOOT?!?!?")
 	elif user.id in special:
 		await client.say("HERSEY! You can't shoot " + user.mention +" a memeber of the Commisariat " + ctx.message.author.mention +"! *BLAM*")
 	else:
-		await client.say ("On the most serious charge of hersey, I find " + user.mention +" guilty. The sentence shall now be carried out. *BLAM*")
+		await client.say ("On the most serious charge of heresey, I find " + user.mention +" guilty. The sentence shall now be carried out. *BLAM*")
 	
 @client.command()
 async def fire():
@@ -89,7 +102,7 @@ async def stop(ctx):
 	if ctx.message.author.id == GDG:
 		await client.logout()
 	else:
-		await client.say("{0}! {1} is trying to shut me down!".format(client.get_user_info(GDG).mention,ctx.message.author.mention))
+		await client.say("{}! {1} is trying to shut me down!".format(ctx.message.server.get_member(GDG),ctx.message.author.mention))
 
 @client.command()
 async def americans():
@@ -100,7 +113,7 @@ async def english():
 	await client.say("https://www.youtube.com/watch?v=a0x6vIAtFcI&feature=youtu.be&t=12s")
 
 @client.command(pass_context = True)	
-async def repeat(ctx):#, msg : discord.message =  None):
+async def repeat(ctx):
 	#print(ctx.message.content)
 	msg = str(ctx.message.content).split(" ", 1)
 	#print(msg[1])
@@ -111,8 +124,19 @@ async def repeat(ctx):#, msg : discord.message =  None):
 		await client.send_message(ctx.message.channel, msg[1])
 
 @client.command(pass_context = True)	
-async def love(ctx, user: discord.Member = None):
-	
+async def love(ctx):
+	target = str(ctx.message.content).split(" ", 1)
+	user = None
+	#print(target)
+	server = ctx.message.server
+	if (len(target) !=2 or not re.match('^<\S+>$',target[1]) ):
+		user = None
+	#	print("who did that")
+	else:
+		target[1] = re.sub('<|>|\@|\!', '', target[1])
+	#	print(target[1])
+		user = server.get_member(target[1])
+	#print(user)
 	msg = [ "*Runs away from {}*",
 			"*Hides from {}*",
 			"*Stabs {} and runs*",
@@ -135,18 +159,18 @@ async def love(ctx, user: discord.Member = None):
 @client.command(pass_context = True)	
 async def help(ctx):
 	commands={}
-	commands['%eight_ball']='A command that may or may not be from the internet.'
-	commands['%tak']='Want to answer something ambigoiusly? Tak!'
-	commands['%gdg']='Ever wonderd what GDG would say in this situation? DISCLAIMER: he would probably not say what the bot gives you'
-	commands['%exterminatus']="Server's getting to rowdy? Purge the heretics!"
-	commands["%blam [@user]"]="Executions will continue until morale improves."
-	commands['%fire']='PEWPEWPEWPEWPEW'
-	commands['%americans']='Ever wanted to sigh at the antics of Americans? ...No?'
-	commands['%english']="Courtesy of Samuel.L.Jackson"
-	commands['%repeat [message]'] = "Literally repeats what you say"
-	commands['%love OPTIONAL[@user]'] = "Does GDG love you? WARNING: GDG and Co do not take any responsibilty for any consequences if asking the bot. If Symptoms persist, consult Andrew Taylor"
-	commands['%stop'] = "Please don't run this."
-	commands['%help'] = "You're here."
+	commands['{}eight_ball'.format(BOT_PREFIX)]='A command that may or may not be from the internet.'
+	commands['{}tak'.format(BOT_PREFIX)]='Want to answer something ambigoiusly? Tak!'
+	commands['{}gdg'.format(BOT_PREFIX)]='Ever wonderd what GDG would say in this situation? DISCLAIMER: he would probably not say what the bot gives you'
+	commands['{}exterminatus'.format(BOT_PREFIX)]="Server's getting to rowdy? Purge the heretics!"
+	commands["{}blam [@user]".format(BOT_PREFIX)]="Executions will continue until morale improves."
+	commands['{}fire'.format(BOT_PREFIX)]='PEWPEWPEWPEWPEW'
+	commands['{}americans'.format(BOT_PREFIX)]='Ever wanted to sigh at the antics of Americans? ...No?'
+	commands['{}english'.format(BOT_PREFIX)]="Courtesy of Samuel.L.Jackson"
+	commands['{}repeat [message]'.format(BOT_PREFIX)] = "Literally repeats what you say"
+	commands['{}love OPTIONAL[@user]'.format(BOT_PREFIX)] = "Does GDG love you? WARNING: GDG and Co do not take any responsibilty for any consequences if asking the bot. If Symptoms persist, consult Andrew Taylor"
+	commands['{}stop'.format(BOT_PREFIX)] = "Please don't run this."
+	commands['{}help'.format(BOT_PREFIX)] = "You're here."
 
 	msg=discord.Embed(title='GDGBOT', description="Written by GDG",color=0x3EA2DD)
 	for command,description in commands.items():
